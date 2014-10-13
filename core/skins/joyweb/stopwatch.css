@@ -1,0 +1,54 @@
+#stopwatch {
+  background: none repeat scroll 0 0 #EEEEEE;
+  border: 1px solid #CCCCCC;
+  color: #51534A;
+  display: block;
+  font-size: 11px;
+  height: 61px;
+  overflow: hidden;
+  position: absolute;
+  right: 95px;
+  top: 10px;
+  width: 224px;
+  z-index: 20;
+}
+
+#stopwatch .watch {
+    position:relative;
+    color:#E24F43;
+    top:11px;
+    font-family:arial, sans-serif;
+    font-size:35px;
+    width:205px;
+    height:52px;
+    padding:0;
+    overflow:hidden;
+    line-height:13px;
+}
+
+#stopwatch_ticker {
+    position:absolute;
+    font-size:11px;
+    right:97px;
+    top:46px;
+    color:#51534A;
+    z-index:60;
+}
+
+#stopwatch_ticker ul {
+    list-style-type: none;
+}
+
+#stopwatch_ticker ul li {
+    text-align:center;
+    width:220px;
+    height:15px;
+    margin-left:-40px;
+    margin-top:-3px;
+    padding:0;
+    overflow:hidden;
+}
+
+*+html #stopwatch_ticker ul li {
+    margin-top:-3px;
+}
