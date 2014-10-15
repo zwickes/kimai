@@ -59,10 +59,10 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
     'projectName', 'description', 'projectComment', 'activityID', 'activityName', 'comment', 'commentType',
     'location', 'trackingNumber', 'username', 'cleared');
 	while ($timeSheetEntries_index < count($timeSheetEntries) && $expenses_index < count($expenses)) {
-		$arr = array();
-    foreach ($keys as $key)
-      $arr[$key] = null;
-    $arr['location'] = $default_location;
+          $arr = array();
+          foreach ($keys as $key)
+            $arr[$key] = null;
+          $arr['location'] = $default_location;
 
 		if ((! $reverse_order && ($timeSheetEntries[$timeSheetEntries_index]['start'] > $expenses[$expenses_index]['timestamp'])) || ($reverse_order && ($timeSheetEntries[$timeSheetEntries_index]['start'] < $expenses[$expenses_index]['timestamp']))) {
 			if ($timeSheetEntries[$timeSheetEntries_index]['end'] != 0) {
@@ -85,6 +85,8 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
 				$arr['customerID'] = $timeSheetEntries[$timeSheetEntries_index]['customerID'];
 				$arr['customerName'] = $timeSheetEntries[$timeSheetEntries_index]['customerName'];
 				$arr['projectID'] = $timeSheetEntries[$timeSheetEntries_index]['projectID'];
+				$arr['project_number'] = $timeSheetEntries[$timeSheetEntries_index]['project_number'];
+				$arr['fee_model'] = $timeSheetEntries[$timeSheetEntries_index]['fee_model'];
 				$arr['projectName'] = $timeSheetEntries[$timeSheetEntries_index]['projectName'];
 				$arr['description'] = $timeSheetEntries[$timeSheetEntries_index]['description'];
 				$arr['projectComment'] = $timeSheetEntries[$timeSheetEntries_index]['projectComment'];
@@ -112,9 +114,11 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
 			$arr['customerID'] = $expenses[$expenses_index]['customerID'];
 			$arr['customerName'] = $expenses[$expenses_index]['customerName'];
 			$arr['projectID'] = $expenses[$expenses_index]['projectID'];
+			$arr['project_number'] = $expenses[$expenses_index]['project_number'];
+			$arr['fee_model'] = $expenses[$expenses_index]['fee_model'];
 			$arr['projectName'] = $expenses[$expenses_index]['projectName'];
-      $arr['description'] = $expenses[$expenses_index]['designation'];
-      $arr['projectComment'] = $expenses[$expenses_index]['projectComment'];
+                        $arr['description'] = $expenses[$expenses_index]['designation'];
+                        $arr['projectComment'] = $expenses[$expenses_index]['projectComment'];
 			if ($limitCommentSize)
 				$arr['comment'] = Format::addEllipsis($expenses[$expenses_index]['comment'], 150);
 			else
@@ -154,6 +158,8 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
 			$arr['customerID'] = $timeSheetEntries[$timeSheetEntries_index]['customerID'];
 			$arr['customerName'] = $timeSheetEntries[$timeSheetEntries_index]['customerName'];
 			$arr['projectID'] = $timeSheetEntries[$timeSheetEntries_index]['projectID'];
+			$arr['project_number'] = $timeSheetEntries[$timeSheetEntries_index]['project_number'];
+			$arr['fee_model'] = $timeSheetEntries[$timeSheetEntries_index]['fee_model'];
 			$arr['projectName'] = $timeSheetEntries[$timeSheetEntries_index]['projectName'];
 			$arr['projectComment'] = $timeSheetEntries[$timeSheetEntries_index]['projectComment'];
 			$arr['activityID'] = $timeSheetEntries[$timeSheetEntries_index]['activityID'];
@@ -186,9 +192,11 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
 		$arr['customerID'] = $expenses[$expenses_index]['customerID'];
 		$arr['customerName'] = $expenses[$expenses_index]['customerName'];
 		$arr['projectID'] = $expenses[$expenses_index]['projectID'];
+		$arr['project_number'] = $expenses[$expenses_index]['project_number'];
+		$arr['fee_model'] = $expenses[$expenses_index]['fee_model'];
 		$arr['projectName'] = $expenses[$expenses_index]['projectName'];
-    $arr['description'] = $expenses[$expenses_index]['designation'];
-    $arr['projectComment'] = $expenses[$expenses_index]['projectComment'];
+                $arr['description'] = $expenses[$expenses_index]['designation'];
+                $arr['projectComment'] = $expenses[$expenses_index]['projectComment'];
 		if ($limitCommentSize)
 			$arr['comment'] = Format::addEllipsis($expenses[$expenses_index]['comment'], 150);
 		else

@@ -166,6 +166,8 @@ switch ($axAction) {
                 $view->fixedRate   = $data['fixedRate'  ];
                 $view->selectedGroups = $database->project_get_groupIDs($id);
                 $view->id = $id;
+                $view->project_number = $data['project_number'];
+                $view->fee_model = $data['fee_model'];
 
                 if (!isset($view->customers[$data['customerID']])) {
                   // add the currently assigned customer to the list although the user is in no group to see him

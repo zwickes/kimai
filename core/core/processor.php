@@ -288,7 +288,9 @@ switch ($axAction) {
               $data['defaultRate']  = getRequestDecimal($_REQUEST['defaultRate']);
               $data['myRate']       = getRequestDecimal($_REQUEST['myRate']);
               $data['fixedRate']    = getRequestDecimal($_REQUEST['fixedRate']);
-
+              $data['project_number'] = $_REQUEST['project_number'];
+              $data['fee_model'] = $_REQUEST['fee_model'];
+              
               $oldGroups = array();
               if ($id)
                 $oldGroups = $database->project_get_groupIDs($id);

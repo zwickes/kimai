@@ -153,6 +153,12 @@
 	<li><label for="name"><?php echo $this->kga['lang']['project']?>:</label>
             <?php echo $this->formText('name', $this->name);?> </li>
 
+	<li><label for="project_number">34F Project Number:</label>
+            <?php echo $this->formText('project_number', $this->project_number, array('size'=>9)); ?> </li>
+
+	<li><label for="fee_model">34F Fee Model:</label>
+            <?php echo $this->formSelect('fee_model', $this->fee_model, array('class' => 'formfield'), array('', 'HOURLY', 'FIXED')); ?> </li>
+
 	<li><label for="customerID"><?php echo $this->kga['lang']['customer']?>:</label> 
 		<?php echo $this->formSelect('customerID', $this->selectedCustomer, array('class' => 'formfield'), $this->customers); ?>
         </li>

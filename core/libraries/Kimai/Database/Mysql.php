@@ -274,6 +274,8 @@ class Kimai_Database_Mysql extends Kimai_Database_Abstract {
       $values['visible']    = MySQL::SQLValue($data['visible']   , MySQL::SQLVALUE_NUMBER );
       $values['internal']   = MySQL::SQLValue($data['internal']  , MySQL::SQLVALUE_NUMBER );
       $values['filter']     = MySQL::SQLValue($data['filter']    , MySQL::SQLVALUE_NUMBER );
+      $values['project_number'] = MySQL::SQLValue($data['project_number'] );
+      $values['fee_model'] = MySQL::SQLValue($data['fee_model'] );
 
       $table = $this->kga['server_prefix']."projects";
       $result = $this->conn->InsertRow($table, $values);
@@ -349,7 +351,7 @@ class Kimai_Database_Mysql extends Kimai_Database_Abstract {
   public function project_edit($projectID, $data) {
       $data = $this->clean_data($data);
 
-      $strings = array('name', 'comment');
+      $strings = array('name', 'comment', 'project_number', 'fee_model');
       foreach ($strings as $key) {
         if (isset($data[$key]))
           $values[$key] = MySQL::SQLValue($data[$key]);
@@ -2214,6 +2216,8 @@ class Kimai_Database_Mysql extends Kimai_Database_Abstract {
       
       
       $select = "SELECT timeSheet.*, status.status, customer.name AS customerName, customer.customerID as customerID, activity.name AS activityName,
+                        project.project_number as project_number, 
+                        project.fee_model as fee_model, 
                         project.name AS projectName, project.comment AS projectComment, user.name AS userName, user.alias AS userAlias ";
       
       if($countOnly) {
@@ -2288,6 +2292,8 @@ class Kimai_Database_Mysql extends Kimai_Database_Abstract {
               $arr[$i]['customerName']      = $row->customerName;
               $arr[$i]['customerID']        = $row->customerID;
               $arr[$i]['activityName']      = $row->activityName;
+              $arr[$i]['project_number']       = $row->project_number;
+              $arr[$i]['fee_model']       = $row->fee_model;
               $arr[$i]['projectName']       = $row->projectName;
               $arr[$i]['projectComment']    = $row->projectComment;
               $arr[$i]['location']          = $row->location;

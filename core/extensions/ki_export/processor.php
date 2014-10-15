@@ -28,6 +28,13 @@ require("../../includes/kspi.php");
 
 require("private_func.php");
 
+function sortProjectDataByProjectName($a, $b) {
+  if ($a[1] == $b[1]) {
+    return 0;
+  }
+  return strcmp($a[1], $b[1]);
+}
+
 
 // ============================
 // = parse general parameters =
@@ -257,8 +264,9 @@ switch ($axAction) {
     break;
 
 
+    
     /**
-     * Exort as excel file.
+     * Export as excel file. - ZW ===========================================
      */
     case 'export_xls':
 
@@ -273,16 +281,151 @@ switch ($axAction) {
           $exportData[$i]['rate'] = str_replace(".",$_REQUEST['decimal_separator'],$exportData[$i]['rate']);
           $exportData[$i]['wage'] = str_replace(".",$_REQUEST['decimal_separator'],$exportData[$i]['wage']);
         }
-        $view->exportData = count($exportData)>0?$exportData:0;
+        
+        
+        // list of employees names
+        $groups = $database->get_groups();
+        foreach($groups as $g) {
+          if ($g['name'] == 'Design') {
+            $designerGroupID = $g['groupID'];
+          }
+        }
+        $designerUsers = $database->get_users(0, array($designerGroupID));
+        
+        // array of weeks in this date range 
+        // -- get the query date range and enumerate all week numbers 
+        $fromWeekNumber = date("W", $in); 
+        $toWeekNumber = date("W", $out); 
+        $numberWeeks = $toWeekNumber - $fromWeekNumber + 1;
+        $view->numWeeks = $numberWeeks;
+        
+//        list of project data (rows)
+        $projectWeeklyTimeBuckets = array();
+        $weeklyTimeBuckets = array();
+        $designerTimeBuckets = array();
+        $projectTimeTotals = array();
+        $projectExpenseTotals = array();
+        $projectFeeModels = array();
+        $totalHours = 0.0;
+        foreach($exportData as &$ed) {
+          $ed['week_number'] = date("W", $ed['time_in']); 
+          $projectNumbersName[$ed['projectName']] = $ed['project_number'];
+          $projectFeeModels[$ed['projectName']] = $ed['fee_model'];
+          
+          if ($ed['type'] == 'expense') {
+            // its an expense - gather expense data
+            $projectExpenseTotals[$ed['projectName']] += $ed['wage']; // shitty name
+            $projectTimeTotals[$ed['projectName']] += 0; // ensures value not changed - but initialized to zero if not yet set
+            continue;
+          }
+          
+          // its a timesheet entry
+          $projectWeeklyTimeBuckets[$ed['username']][$ed['projectName']][$ed['week_number']] += $ed['decimalDuration'];
+          $weeklyTimeBuckets[$ed['username']][$ed['week_number']] += $ed['decimalDuration'];
+          $designerTimeBuckets[$ed['username']] += $ed['decimalDuration'];
+          $projectTimeTotals[$ed['projectName']] += empty($ed['decimalDuration']) ? 0 : $ed['decimalDuration'];
+          $totalHours += $ed['decimalDuration'];
+        }
+        $view->totalDisbursements = $kga['currency_sign'] . sprintf("%01.2f",  array_sum($projectExpenseTotals));
+        
+        $projectDataRows = array();
+        foreach($projectNumbersName as $prjName => $prjNo) {
+          $row = array($prjNo, $prjName);
+          foreach($designerUsers as $du) {
+            $currentUser = $du['name'];
+            for ($w = $fromWeekNumber; $w <= $toWeekNumber; $w++) {
+              if ($projectWeeklyTimeBuckets[$currentUser][$prjName][$w] > 0) {
+                $row[] = $projectWeeklyTimeBuckets[$currentUser][$prjName][$w];
+              } else  {
+                $row[] = '&nbsp;';
+              }
+            }
+          }            
+          // Hourly Totals	
+          $row[] = $projectTimeTotals[$prjName]; 
+          
+          // fee model
+          $row[] = $projectFeeModels[$prjName];
+          
+          // rate (hr)
+          $row[] = 'RATE PLACEHOLDER';
+          
+          // Fee
+          $row[] = 'FEE PLACEHOLDER';
+          
+          // Disbursements
+          $row[] = $kga['currency_sign'] . sprintf("%01.2f", $projectExpenseTotals[$prjName]);
+          
+          $projectDataRows[] = $row;
+        }
+        // sort by project name
+        usort($projectDataRows, 'sortProjectDataByProjectName');
 
-        $view->columns = $columns;
-        $view->custom_timeformat = $timeformat;
-        $view->custom_dateformat = $dateformat;
+        
+        $view->totalFees = 'placeholder: calculateFees();';
+        
+        
+        $duNames = array();
+        foreach($designerUsers as $d) {
+          $duNames[] = $d['name'] . ' ('.$designerTimeBuckets[$d['name']].' hr.)';
+        }
+        $view->duNames = $duNames;
+        $view->designerTimeBuckets = $designerTimeBuckets;
+        
+        $weeksAllDesigners = array();
+        for ($di = 0; $di < count($designerUsers); $di++) {
+          for ($wn = $fromWeekNumber; $wn <= $toWeekNumber; $wn++) {
+            $weeksAllDesigners[] = 'Week #'. $wn;
+          }
+        }
+        $view->weeksAllDesigners = $weeksAllDesigners;
+        $view->projectDataRows = $projectDataRows;
+        
+        // totals (1 row)
+        $f1 = array();
+        foreach($designerUsers as $d) {
+          for ($wn = $fromWeekNumber; $wn <= $toWeekNumber; $wn++) {
+            $f1[] = $weeklyTimeBuckets[$d['name']][$wn];
+          }
+        }
+        $f1[] = $totalHours;
+        $view->footer1 = $f1;
+        
+//        $view->custom_timeformat = $timeformat;
+//        $view->custom_dateformat = $dateformat;
 
         header("Content-Disposition:attachment;filename=export.xls");
         header("Content-Type: application/vnd.ms-excel");
-        echo $view->render("formats/excel.php");
+        
+        echo $view->render("formats/excel34FTimesheet.php");
     break;
+    
+//    /**
+//     * Exort as excel file.
+//     */
+//    case 'export_xls':
+//
+//        $database->user_set_preferences(array(
+//          'decimal_separator' => $_REQUEST['decimal_separator'],
+//          'reverse_order' => isset($_REQUEST['reverse_order'])?1:0),
+//          'ki_export.xls.');      
+//       
+//        $exportData = export_get_data($in,$out,$filterUsers,$filterCustomers,$filterProjects,$filterActivities,false,$reverse_order,$default_location,$filter_cleared,$filter_type,false,$filter_refundable);
+//        for ($i=0;$i<count($exportData);$i++) {
+//          $exportData[$i]['decimalDuration'] = str_replace(".",$_REQUEST['decimal_separator'],$exportData[$i]['decimalDuration']);
+//          $exportData[$i]['rate'] = str_replace(".",$_REQUEST['decimal_separator'],$exportData[$i]['rate']);
+//          $exportData[$i]['wage'] = str_replace(".",$_REQUEST['decimal_separator'],$exportData[$i]['wage']);
+//        }
+//        $view->exportData = count($exportData)>0?$exportData:0;
+//
+//        $view->columns = $columns;
+//        $view->custom_timeformat = $timeformat;
+//        $view->custom_dateformat = $dateformat;
+//
+//        header("Content-Disposition:attachment;filename=export.xls");
+//        header("Content-Type: application/vnd.ms-excel");
+//        echo $view->render("formats/excel.php");
+//    break;
 
 
     /**
