@@ -190,3 +190,139 @@ function invoice_get_data($start, $end, $projects, $filter_cleared, $short_form)
 
     return $result_arr;
 }
+
+
+
+
+//function invoice_get_data34F($start, $end, $projects, $filter_cleared, $short_form) {
+//    
+//    global $expense_ext_available, $database;
+//    
+//    $limit = false;
+//    $reverse_order = false;
+//    $limitCommentSize = true;
+//    $filter_refundable = -1;
+//    $timeSheetEntries = array();
+//    $expenses = array();
+//    
+//    $timeSheetEntries = $database->get_timeSheet($start, $end, null, null, $projects, null, $limit, $reverse_order, $filter_cleared);
+//    if ($expense_ext_available) {
+//        $expenses = get_expenses($start, $end, null, null, $projects, $limit, $reverse_order, $filter_refundable, $filter_cleared);
+//    }
+//    
+//    $result_arr = array();
+//    $timeSheetEntries_index = 0;
+//    $expenses_index = 0;
+//    
+//    $keys = array('type', 'desc', 'hour', 'fduration', 'amount', 'date', 'description', 'rate', 'comment', 'username', 'useralias', 'location');
+//    
+//    while ($timeSheetEntries_index < count($timeSheetEntries) && $expenses_index < count($expenses)) {
+//        $arr = array();
+//        
+//        foreach ($keys as $key){
+//            $arr[$key] = null;
+//        }
+//
+//        if (    (!$reverse_order && ($timeSheetEntries[$timeSheetEntries_index]['start'] > $expenses[$expenses_index]['timestamp'])) 
+//            ||  ($reverse_order && ($timeSheetEntries[$timeSheetEntries_index]['start'] < $expenses[$expenses_index]['timestamp']))) 
+//        {
+//            if ($timeSheetEntries[$timeSheetEntries_index]['end'] != 0) {
+//                // active recordings will be omitted
+//                $arr['type'] = 'timeSheet';
+//                $arr['location'] = $timeSheetEntries[$timeSheetEntries_index]['location'];
+//                $arr['desc'] = $timeSheetEntries[$timeSheetEntries_index]['activityName'];
+//                $arr['hour'] = $timeSheetEntries[$timeSheetEntries_index]['duration'] / 3600;
+//                $arr['fDuration'] = $timeSheetEntries[$timeSheetEntries_index]['formattedDuration'];
+//                $arr['amount'] = $timeSheetEntries[$timeSheetEntries_index]['wage'];
+//                $arr['date'] = date("m/d/Y", $timeSheetEntries[$timeSheetEntries_index]['start']);
+//                $arr['description'] = $timeSheetEntries[$timeSheetEntries_index]['description'];
+//                $arr['rate'] = $timeSheetEntries[$timeSheetEntries_index]['rate'];
+//                $arr['trackingNr'] = $timeSheetEntries[$timeSheetEntries_index]['trackingNumber'];
+//                if ($limitCommentSize) {
+//                  $arr['comment'] = Format::addEllipsis($timeSheetEntries[$timeSheetEntries_index]['comment'], 150);
+//                } else {
+//                  $arr['comment'] = $timeSheetEntries[$timeSheetEntries_index]['comment'];
+//                }
+//                $arr['username'] = $timeSheetEntries[$timeSheetEntries_index]['userName'];
+//                $arr['useralias'] = $timeSheetEntries[$timeSheetEntries_index]['userAlias'];
+//            }
+//            $timeSheetEntries_index++;
+//        } else {
+//            $arr['type'] = 'expense';
+//            $arr['desc'] = $expenses[$expenses_index]['designation'];
+//            $arr['multiplier'] = $expenses[$expenses_index]['multiplier'];
+//            $arr['value'] = $expenses[$expenses_index]['value'];
+//            $arr['fDuration'] = $expenses[$expenses_index]['multiplier'];
+//            $arr['amount'] = sprintf("%01.2f", $expenses[$expenses_index]['value'] * $expenses[$expenses_index]['multiplier']);
+//            $arr['date'] = date("m/d/Y", $expenses[$expenses_index]['timestamp']);
+//            $arr['rate'] = $expenses[$expenses_index]['value'];
+//            if ($limitCommentSize)
+//                $arr['comment'] = Format::addEllipsis($expenses[$expenses_index]['comment'], 150);
+//            else
+//                $arr['comment'] = $expenses[$expenses_index]['comment'];
+//            $arr['activityName'] = $expenses[$expenses_index]['designation'];
+//            $arr['username'] = $expenses[$expenses_index]['userName'];
+//            $arr['useralias'] = $expenses[$expenses_index]['userAlias'];
+//            $expenses_index++;
+//        }
+//
+//        invoice_add_to_array($result_arr, $arr, $short_form);
+//    }
+//
+//    // timesheet entries
+//    while ($timeSheetEntries_index < count($timeSheetEntries)) {
+//        if ($timeSheetEntries[$timeSheetEntries_index]['end'] != 0) {
+//            // active recordings will be omitted
+//            $arr = array();
+//            foreach ($keys as $key)
+//                $arr[$key] = null;
+//
+//            $arr['type'] = 'timeSheet';
+//            $arr['location'] = $timeSheetEntries[$timeSheetEntries_index]['location'];
+//            $arr['desc'] = $timeSheetEntries[$timeSheetEntries_index]['activityName'];
+//            $arr['hour'] = $timeSheetEntries[$timeSheetEntries_index]['duration'] / 3600;
+//            $arr['fDuration'] = $timeSheetEntries[$timeSheetEntries_index]['formattedDuration'];
+//            $arr['amount'] = $timeSheetEntries[$timeSheetEntries_index]['wage'];
+//            $arr['date'] = date("m/d/Y", $timeSheetEntries[$timeSheetEntries_index]['start']);
+//            $arr['description'] = $timeSheetEntries[$timeSheetEntries_index]['description'];
+//            $arr['rate'] = $timeSheetEntries[$timeSheetEntries_index]['rate'];
+//            $arr['trackingNr'] = $timeSheetEntries[$timeSheetEntries_index]['trackingNumber'];
+//            if ($limitCommentSize)
+//                $arr['comment'] = Format::addEllipsis($timeSheetEntries[$timeSheetEntries_index]['comment'], 150);
+//            else
+//                $arr['comment'] = $timeSheetEntries[$timeSheetEntries_index]['comment'];
+//            $arr['username'] = $timeSheetEntries[$timeSheetEntries_index]['userName'];
+//            $arr['useralias'] = $timeSheetEntries[$timeSheetEntries_index]['userAlias'];
+//            invoice_add_to_array($result_arr, $arr, $short_form);
+//        }
+//        $timeSheetEntries_index++;
+//    }
+//
+//    // expenses entries
+//    while ($expenses_index < count($expenses)) {
+//        $arr = array();
+//        foreach ($keys as $key)
+//            $arr[$key] = null;
+//
+//        $arr['type'] = 'expense';
+//        $arr['desc'] = $expenses[$expenses_index]['designation'];
+//        $arr['multiplier'] = $expenses[$expenses_index]['multiplier'];
+//        $arr['value'] = $expenses[$expenses_index]['value'];
+//        $arr['fDuration'] = $expenses[$expenses_index]['multiplier'];
+//        $arr['amount'] = sprintf("%01.2f", $expenses[$expenses_index]['value'] * $expenses[$expenses_index]['multiplier']);
+//        $arr['date'] = date("m/d/Y", $expenses[$expenses_index]['timestamp']);
+//        $arr['rate'] = $expenses[$expenses_index]['value'];
+//        if ($limitCommentSize)
+//            $arr['comment'] = Format::addEllipsis($expenses[$expenses_index]['comment'], 150);
+//        else
+//            $arr['comment'] = $expenses[$expenses_index]['comment'];
+//        $arr['activityName'] = $expenses[$expenses_index]['designation'];
+//        $arr['username'] = $expenses[$expenses_index]['userName'];
+//        $arr['useralias'] = $expenses[$expenses_index]['userAlias'];
+//        $expenses_index++;
+//        invoice_add_to_array($result_arr, $arr, $short_form);
+//    }
+//
+//    return $result_arr;
+//  
+//}

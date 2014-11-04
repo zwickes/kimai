@@ -681,6 +681,17 @@ class tinyDoc extends clsTinyButStrong
    */
   public function getDownloadFilename($options = array())
   {
+    // if its multiple projects - use the customer name
+    // else use the project name 
+    
+    // Example: 'INVOICE 1160 Cupcakes Guildford MAR.31.14.docx'
+    global $renderType, $project, $out;
+    if ($renderType == 'INVOICE') {
+      return 'INVOICE XXXX ' . $project . ' ' . date('M.j.y', $out) . '.odt';
+    } else if ($renderType == 'DISBURSEMENTS') {
+      return 'INVOICE XXXX ' . $project . ' EXPENSE REPORT ' . date('M.j.y', $out) . '.odt';
+    }
+    
     return basename($this->getSourcePathname());
   }
 

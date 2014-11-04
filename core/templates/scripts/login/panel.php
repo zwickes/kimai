@@ -5,7 +5,7 @@
 <link rel="SHORTCUT ICON" href="favicon.ico">
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <meta name="robots" value="noindex,nofollow" />
-<title>Kimai <?php echo $this->kga['lang']['login']?></title>
+<title>34F Design Time Tracking - login</title>
 <script type="text/javascript" src="libraries/jQuery/jquery-1.9.1.min.js"></script>
 <script type="text/javascript" src="libraries/jQuery/jquery.cookie.js"></script>
 <?php if ($this->kga['check_at_startup']): ?>

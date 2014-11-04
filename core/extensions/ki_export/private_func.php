@@ -74,7 +74,7 @@ function export_get_data($start, $end, $users = null, $customers = null, $projec
 				$arr['duration'] = $timeSheetEntries[$timeSheetEntries_index]['duration'];
 				$arr['formattedDuration'] = $timeSheetEntries[$timeSheetEntries_index]['formattedDuration'];
 				$arr['decimalDuration'] = sprintf("%01.2f", $timeSheetEntries[$timeSheetEntries_index]['duration'] / 3600);
-				$arr['rate'] = $timeSheetEntries[$timeSheetEntries_index]['rate'];
+				$arr['rate'] = $timeSheetEntries[$timeSheetEntries_index]['rate']; //
 				$arr['wage'] = $timeSheetEntries[$timeSheetEntries_index]['wage'];
 				$arr['wage_decimal'] = $timeSheetEntries[$timeSheetEntries_index]['wage_decimal'];
 				$arr['budget'] = $timeSheetEntries[$timeSheetEntries_index]['budget'];

@@ -9,10 +9,11 @@
               <col class="to" />
               <col class="time" />
               <col class="dec_time" />
-              <col class="rate" />
+<!--              <col class="rate" />
               <col class="wage" />
               <col class="budget" />
               <col class="approved" />
+              -->
               <col class="status" />
               <col class="billable" />
               <col class="client" />
@@ -20,8 +21,9 @@
               <col class="activity" />
               <col class="description" />
               <col class="comment" />
-              <col class="location" />
+<!--              <col class="location" />
               <col class="trackingNumber" />
+-->
               <col class="user" />
               <col class="cleared" />
             </colgroup>
@@ -85,8 +87,12 @@ $isExpense = $row['type']=="expense"; ?>
                               else echo "&ndash;:&ndash;&ndash;"; ?>
                     </td>
 
+<!--                    
                     <td class="rate
-                                            <?php if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
+                                            <?php /*
+                                             * 
+                                             * 
+                                             * if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
                                                   elseif ($row['time_out'] != $time_in_buffer       && $this->kga['show_gabBreaks'])         echo "break_gap";
                                                   if (isset($this->disabled_columns['rate'])) echo "disabled"; ?>
                     ">
@@ -109,18 +115,23 @@ $isExpense = $row['type']=="expense"; ?>
                                                   elseif ($row['time_out'] != $time_in_buffer       && $this->kga['show_gabBreaks'])         echo "break_gap";
                                                   if (isset($this->disabled_columns['budget'])) echo "disabled"; ?>
                     ">
-                        <?php echo !$isExpense ? $this->escape($row['budget']) : '&ndash;'; ?>
+                        <?php echo !$isExpense ? $this->escape($row['budget']) : '&ndash;';  ?>
+                                             
                     </td>
-                    
                     
                     <td class="approved
                                             <?php if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
                                                   elseif ($row['time_out'] != $time_in_buffer       && $this->kga['show_gabBreaks'])         echo "break_gap";
                                                   if (isset($this->disabled_columns['approved'])) echo "disabled"; ?>
                     ">
-                        <?php echo !$isExpense ? $this->escape($row['approved']) : '&ndash;'; ?>
+                        <?php echo !$isExpense ? $this->escape($row['approved']) : '&ndash;'; 
+                                             * 
+                                             */ 
+                                            ?>
+                                             
                     </td>
                     
+                    -->
                     
                     <td class="status
                                             <?php if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
@@ -202,8 +213,8 @@ $isExpense = $row['type']=="expense"; ?>
                         
                     </td>
 
-                    <td class="location
-                                            <?php if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
+<!--                    <td class="location
+                                            <?php /* if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";
                                                   elseif ($row['time_out'] != $time_in_buffer       && $this->kga['show_gabBreaks'])         echo "break_gap";
                                                   if (isset($this->disabled_columns['location'])) echo "disabled"; ?>
                     ">
@@ -216,9 +227,12 @@ $isExpense = $row['type']=="expense"; ?>
                                                   elseif ($row['time_out'] != $time_in_buffer       && $this->kga['show_gabBreaks'])         echo "break_gap";
                                                   if (isset($this->disabled_columns['trackingNumber'])) echo "disabled"; ?>
                     ">
-                            <?php echo $this->escape($row['trackingNumber'])?>
-                        
-                    </td>
+                            <?php echo $this->escape($row['trackingNumber'])
+
+*/ 
+?>
+</td>
+-->
 
                     <td class="user
                                             <?php if (strftime("%d",$row['time_in']) != $day_buffer && $this->kga['show_daySeperatorLines']) echo "break_day";

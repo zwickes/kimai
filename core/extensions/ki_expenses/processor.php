@@ -192,6 +192,8 @@ switch ($axAction) {
         $data['refundable']   = getRequestBool('refundable');
         $data['multiplier']   = getRequestDecimal($_REQUEST['multiplier']);
         $data['value']        = getRequestDecimal($_REQUEST['edit_value']);
+        $data['pst_part']     = getRequestDecimal($_REQUEST['edit_pst_part']);
+        $data['gst_part']     = getRequestDecimal($_REQUEST['edit_gst_part']);
         $data['userID']       = $kga['user']['userID'];
 
         // parse new day and time

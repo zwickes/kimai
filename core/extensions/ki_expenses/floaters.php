@@ -47,7 +47,11 @@ switch ($axAction)
             $view->edit_day         = date("d.m.Y",$expense['timestamp']);
             $view->edit_time        = date("H:i:s",$expense['timestamp']);
             $view->multiplier       = $expense['multiplier'];
+
             $view->edit_value       = $expense['value'];
+            $view->edit_pst_part       = $expense['pst_part'];
+            $view->edit_gst_part       = $expense['gst_part'];
+            
             $view->designation      = $expense['designation'];
             $view->selected_project = $expense['projectID'];
             $view->commentType      = $expense['commentType'];

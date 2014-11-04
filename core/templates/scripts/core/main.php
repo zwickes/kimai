@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="robots" value="noindex,nofollow" />
 
-    <title><?php echo isset($this->kga['user']) ? $this->escape($this->kga['user']['name']) : $this->escape($this->kga['customer']['name'])?> - Kimai</title>
+    <title><?php echo isset($this->kga['user']) ? $this->escape($this->kga['user']['name']) : $this->escape($this->kga['customer']['name'])?> - 34F Design Time Tracking</title>
     <link rel="shortcut icon" type="image/x-icon" href="../favicon.ico">
 
     <!-- Default Stylesheets -->
@@ -184,7 +184,7 @@
     <div id="top">
         
         <div id="logo">
-            <img src="../skins/<?php echo $this->escape($this->kga['conf']['skin'])?>/grfx/g3_logo.png" width="151" height="52" alt="Logo" />
+            <img src="../skins/<?php echo $this->escape($this->kga['conf']['skin'])?>/grfx/_34FDesign_LOGO_forBlk3.png" width="150" height="65" alt="Logo" />
         </div>
         
         <div id="menu">
@@ -263,9 +263,10 @@
             <ul id="ticker"><li id="ticker_customer">&nbsp;</li><li id="ticker_project">&nbsp;</li><li id="ticker_activity">&nbsp;</li></ul>
         </div>
         
-        <div id="buzzer" class="disabled">
+<!--        <div id="buzzer" class="disabled">
             <div>&nbsp;</div>
-        </div>
+        </div>-->
+      
         <?php endif; ?>
         
     </div>

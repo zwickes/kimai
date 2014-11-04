@@ -55,6 +55,8 @@ function expense_create($userID,$data) {
     $values ['timestamp']    =   MySQL::SQLValue( $data ['timestamp']   , MySQL::SQLVALUE_NUMBER );
     $values ['multiplier']   =   MySQL::SQLValue( $data ['multiplier']  , MySQL::SQLVALUE_NUMBER );
     $values ['value']        =   MySQL::SQLValue( $data ['value']       , MySQL::SQLVALUE_NUMBER );
+    $values ['pst_part']        =   MySQL::SQLValue( $data ['pst_part']       , MySQL::SQLVALUE_NUMBER );
+    $values ['gst_part']        =   MySQL::SQLValue( $data ['gst_part']       , MySQL::SQLVALUE_NUMBER );
     $values ['userID']       =   MySQL::SQLValue( $userID               , MySQL::SQLVALUE_NUMBER );
     $values ['refundable']   =   MySQL::SQLValue( $data ['refundable']  , MySQL::SQLVALUE_NUMBER );
 
@@ -200,6 +202,8 @@ function get_expenses($start, $end, $users = null, $customers = null, $projects 
       $arr[$i]['timestamp']      = $row->timestamp;
       $arr[$i]['multiplier']     = $row->multiplier;
       $arr[$i]['value']          = $row->value;
+      $arr[$i]['pst_part']          = $row->pst_part;
+      $arr[$i]['gst_part']          = $row->gst_part;
       $arr[$i]['designation']    = $row->designation;
       $arr[$i]['comment']        = $row->comment;
       $arr[$i]['commentType']    = $row->commentType;
@@ -311,6 +315,8 @@ function expense_edit($id,$data) {
     $values ['timestamp']    = MySQL::SQLValue($new_array ['timestamp']   , MySQL::SQLVALUE_NUMBER );
     $values ['multiplier']   = MySQL::SQLValue($new_array ['multiplier']  , MySQL::SQLVALUE_NUMBER );
     $values ['value']        = MySQL::SQLValue($new_array ['value']       , MySQL::SQLVALUE_NUMBER );
+    $values ['pst_part']        = MySQL::SQLValue($new_array ['pst_part']       , MySQL::SQLVALUE_NUMBER );
+    $values ['gst_part']        = MySQL::SQLValue($new_array ['gst_part']       , MySQL::SQLVALUE_NUMBER );
     $values ['refundable']   = MySQL::SQLValue($new_array ['refundable']  , MySQL::SQLVALUE_NUMBER );
                                    
     $filter ['expenseID']           = MySQL::SQLValue($id, MySQL::SQLVALUE_NUMBER);

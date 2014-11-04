@@ -55,6 +55,10 @@ $dateformat = 'd.m.';
 $view->timeformat = $timeformat;
 $view->dateformat = $dateformat;
 
+if ($user['globalRoleID'] == 1) {
+  $view->isAdmin = true;
+}
+
 echo $view->render('panel.php');
 
 

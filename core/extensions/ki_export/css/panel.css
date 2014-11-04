@@ -75,7 +75,7 @@
 
 #export_panel #export_extension_export_xls
 {
-	left:44px; top:-39px;
+	left:44px; top:3px;
 	background-position: 82px 0;
 }
 #export_panel #export_extension_export_xls:hover       { background-position: 82px -42px; }
@@ -83,7 +83,7 @@
 
 #export_panel #export_extension_export_csv
 {
-	left:88px; top:-81px;
+	left:88px; top:-39px;
 	background-position: -41px 0;
 }
 #export_panel #export_extension_export_csv:hover       { background-position: -41px -42px; }

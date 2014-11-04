@@ -24,6 +24,8 @@
  */
 class Kimai_Invoice_OdtRenderer extends Kimai_Invoice_AbstractRenderer
 {
+  
+    public $renderType = 'INVOICE';
 
     /**
      * Render the invoice.
@@ -66,6 +68,7 @@ class Kimai_Invoice_OdtRenderer extends Kimai_Invoice_AbstractRenderer
         $customer   = $this->getModel()->getCustomer();
         $projects   = $this->getModel()->getProjects();
         $entries    = $this->getModel()->getEntries();
+        $disbursementEntries = $this->getModel()->getDisbursements();
 
         // assign all available variables (which are not arrays as they do not work in tinyButStrong)
         foreach($this->getModel()->toArray() as $k => $v) {
@@ -83,7 +86,11 @@ class Kimai_Invoice_OdtRenderer extends Kimai_Invoice_AbstractRenderer
         $GLOBALS['projects'] = $projects;
         $GLOBALS['project'] = implode(', ', array_map(function($project) { return $project['name']; }, $projects));
 
-        $doc->mergeXmlBlock('row', $entries);
+        if ($this->renderType == 'INVOICE') {
+          $doc->mergeXmlBlock('InvItem', $entries);
+        } else {
+          $doc->mergeXmlBlock('eItem', $disbursementEntries);
+        }
 
         $doc->saveXml();
         $doc->close();

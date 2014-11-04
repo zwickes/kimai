@@ -94,7 +94,7 @@
                               'id' => 'add_edit_expense_project_ID',
                               'class' => 'formfield',
                               'size' => '5',
-                              'style' => 'width:400px',
+                              'style' => 'width:500px',
                               'tabindex' => '1',
                               ), $this->projects);
                         ?>
@@ -125,13 +125,20 @@
 
                    <li>
                        <label for="edit_value"><?php echo $this->kga['lang']['expense']?>:</label>
-                        <input id='edit_value' type='text' name='edit_value' value='<?php echo $this->escape($this->edit_value)?>' maxlength='8'  size='8'  tabindex='10' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
+                        <input id='edit_value' style="float:left;" type='text' name='edit_value' value='<?php echo $this->escape($this->edit_value)?>' maxlength='8'  size='8'  tabindex='10' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
+                        &nbsp;
+                       <label for="edit_pst_part">PST portion:</label>
+                        <input id='edit_pst_part' style="float:left;" type='text' name='edit_pst_part' value='<?php echo $this->escape($this->edit_pst_part)?>' maxlength='8'  size='8'  tabindex='11' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
+                        &nbsp;
+                       <label for="edit_gst_part">GST portion:</label>
+                        <input id='edit_gst_part' style="float:left;" type='text' name='edit_gst_part' value='<?php echo $this->escape($this->edit_gst_part)?>' maxlength='8'  size='8'  tabindex='12' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
+                        <br/><br/>
                    </li>
 
 
                    <li>
                        <label for="designation"><?php echo $this->kga['lang']['designation']?>:</label>
-                        <input id='designation' type='text' name='designation' value='<?php echo $this->escape($this->designation)?>' maxlength='20'  size='20'  tabindex='11' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
+                        <input id='designation' type='text' name='designation' value='<?php echo $this->escape($this->designation)?>' maxlength='20'  size='20'  tabindex='13' <?php if ($this->kga['conf']['autoselection']):?> onClick="this.select();" <?php endif; ?> />
                    </li>
 
                    
@@ -142,12 +149,12 @@
             <ul>
           <li>
                         <label for="erase"><?php echo $this->kga['lang']['refundable_long']?>:</label>
-                        <input type='checkbox' id='refundable' name='refundable' <?php if ($this->refundable):?> checked="checked" <?php endif; ?> tabindex='12'/>
+                        <input type='checkbox' id='refundable' name='refundable' <?php if ($this->refundable):?> checked="checked" <?php endif; ?> tabindex='14'/>
                    </li>
 
                    <li>
                         <label for="comment"><?php echo $this->kga['lang']['comment']?>:</label>
-                        <textarea id='comment' style="width:395px" class='comment' name='comment' cols='40' rows='5' tabindex='13'><?php echo $this->escape($this->comment)?></textarea>
+                        <textarea id='comment' style="width:395px" class='comment' name='comment' cols='40' rows='5' tabindex='15'><?php echo $this->escape($this->comment)?></textarea>
                    </li>
                    
                    <li>
@@ -155,12 +162,12 @@
                        <?php echo $this->formSelect('commentType', $this->commentType, array(
                          'id' => 'commentType',
                          'class' => 'formfield',
-                         'tabindex' => '14'), $this->commentTypes); ?>
+                         'tabindex' => '16'), $this->commentTypes); ?>
                    </li>
                    
                     <li>
                         <label for="erase"><?php echo $this->kga['lang']['erase']?>:</label>
-                        <input type='checkbox' id='erase' name='erase' tabindex='15'/>
+                        <input type='checkbox' id='erase' name='erase' tabindex='17'/>
                    </li>
         
                 </ul>

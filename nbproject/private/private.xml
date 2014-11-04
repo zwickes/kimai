@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>core/extensions/ki_export/templates/scripts/formats/excel34FTimesheet.php</url>
+            <bookmark id="2">
+                <name/>
+                <line>16</line>
+                <key/>
+            </bookmark>
+            <bookmark id="1">
+                <name/>
+                <line>121</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/Zend/View.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/table.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/Kimai/Database/Mysql.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/TinyButStrong/tinyButStrong.class.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/Kimai/Invoice/OdtRenderer.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/css/panel.css</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_expenses/floaters.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/floaters.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/main.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_invoice/templates/scripts/main.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_invoice/print.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_expenses/private_db_layer_mysql.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_expenses/processor.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/includes/kspi.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/templates/scripts/floaters/add_edit_project.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/floaters/export_CSV.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/includes/classes/logger.class.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/private_func.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/processor.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/TinyButStrong/tinyDoc.class.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/formats/excel34FTimesheetDetail.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/Zend/View/Abstract.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_timesheets/processor.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/panel.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/mysql.class.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_invoice/processor.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/templates/scripts/formats/excel34FTimesheet.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_invoice/init.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/libraries/34F/export_functions.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/extensions/ki_export/css/tables.css.php</file>
+            <file>file:/E:/34FDI_LOCAL_COPY/dev/kimai/core/core/kimai.php</file>
+        </group>
+    </open-files>
+</project-private>

@@ -112,7 +112,7 @@ return array(
     "running" => "Running...",
     "company" => "Company",
 
-    "vat" => "VAT",
+    "vat" => "GST",
     "contactPerson" => "Contact person",
 
     "street" => "Street",
@@ -225,7 +225,7 @@ return array(
     "showIDs" => "Show IDs",
     "error" => "An error occured!",
     "checkupdate" => "Look for update",
-    "selectedForRecording" => "Selected for recording:",
+    "selectedForRecording" => "Default for new entries:",
     "selectedCustomerLabel" => "C:",
     "selectedProjectLabel" => "P:",
     "selectedActivityLabel" => "T:",
@@ -254,7 +254,7 @@ return array(
     "seconds" => "Seconds",
     "and" => "and",
     "customerlogin" => "customer login",
-    "expense" => "Expense",
+    "expense" => "Expense Total",
     "designation" => "Description",
     "cleared" => "cleared",
     "atLeastOneGroup" => 'At least one group has to be selected.',
@@ -475,10 +475,11 @@ Choose another table prefix or delete existing tables with this prefix in order 
         "invoiceTimePeriod" => "Time Period:",
         "invoiceOptionShort" => "Short Invoice",
         "invoiceOptionRound" => "Round time",
-        "invoiceButton" => "Create",
+        "invoiceButton" => "Create Invoice",
+        "disbursementsButton" => "Create Disbursement Detail",
         'noData' => 'There are no time entries for the selected project & time period.',
         'noProject' => 'No project was selected.',
-        'defaultVat' => 'Default VAT rate'
+        'defaultVat' => 'Default GST rate'
     ),
 
     'ext_budget' => array(

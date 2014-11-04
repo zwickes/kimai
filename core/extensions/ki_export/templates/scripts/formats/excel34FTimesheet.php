@@ -46,9 +46,9 @@ xmlns="http://www.w3.org/TR/REC-html40">
   ?>
   
   <td width=55 style='border:solid; width:41pt; background: #FFC000;'>Totals</td>
-  <td width=60 style='border:solid; width:45pt; background: #FFC000;'>Fee MODEL</td>
+  <td width=60 style='border:solid; width:60pt; background: #FFC000;'>Fee MODEL</td>
   <td width=76 style='border:solid; width:57pt; background: #FFC000;'>Rate</td>
-  <td width=99 style='border:solid; width:74pt; background: #FFC000;'>Total Fees</td>
+  <td width=99 style='border:solid; width:90pt; background: #FFC000;'>Total Fees</td>
   <td width=103 style='border:solid; ;width:77pt; background: #FFC000;'>Total Disbursements</td>
   <td width=268 style='border:solid; width:201pt; background: #FFC000;'>Notes</td>
   <td width=98 style='border:solid; width:74pt; background: #FFC000;'>INVOICE #</td>
@@ -65,16 +65,19 @@ xmlns="http://www.w3.org/TR/REC-html40">
       <?php 
         $count = 0;
         for($cell = 2; $cell < count($row); $cell++, $count++) {
+          
+          $el = empty($row[$cell]) ? '&nbsp;' : $row[$cell];
+          
           if ($count < count($this->duNames)*$this->numWeeks) {
             if ($count % $this->numWeeks == 0) {
-              echo "<td style='border-top:solid; border-bottom:solid; border-left:solid; text-align: right;'>$row[$cell]&nbsp;</td>\n";
+              echo "<td style='border-top:solid; border-bottom:solid; border-left:solid; text-align: right;'>$el</td>\n";
             } else {
-              echo "<td style='border-top:solid; border-bottom:solid; text-align: right;'>$row[$cell]&nbsp;</td>\n";
+              echo "<td style='border-top:solid; border-bottom:solid; text-align: right;'>$el</td>\n";
             }
-          } else if ($row[$cell][0] == '$') {
-            echo "<td style='border-top:solid; border-bottom:solid; border-left:solid; text-align: right;'>$row[$cell]&nbsp;</td>\n";
+          } else if ($row[$cell][0] == '$' || strpos($row[$cell], 'EST') !== false) {
+            echo "<td style='border-top:solid; border-bottom:solid; border-left:solid; text-align: right;'>$el</td>\n";
           } else {
-            echo "<td style='border-top:solid; border-bottom:solid; border-left:solid;  text-align: center;'>$row[$cell]&nbsp;</td>\n";
+            echo "<td style='border-top:solid; border-bottom:solid; border-left:solid;  text-align: center;'>$el</td>\n";
           }
         } 
       ?>

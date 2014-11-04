@@ -32,14 +32,16 @@
 	<div id ="invoice_extension">
 		<form id="invoice_extension_form" method="post" action="../extensions/ki_invoice/print.php" target="_blank">
 			<div id="invoice_extension_advanced">
-				<div>
-					<?php echo $this->kga['lang']['customer'] ?>:
-					<?php echo $this->formSelect('customerID', $this->preselected_customer, array('id' => 'invoice_customerID', 'class'=>'formfield'), $this->customers); ?>
+				<div style="float:left;">
+					<div style="width:125px;float:left;"><?php echo $this->kga['lang']['customer'] ?>:</div>
+					<div style="float:left;"><?php echo $this->formSelect('customerID', $this->preselected_customer, array('id' => 'invoice_customerID', 'class'=>'formfield'), $this->customers); ?></div><br/><br/>
 				</div>
-				<div>
-					<?php echo $this->kga['lang']['project'] ?>:
-					<?php echo $this->formSelect('projectID[]', $this->preselected_project, array('id' => 'invoice_projectID', 'class'=>'formfield', 'multiple' => 'multiple'), $this->projects); ?>
+                                <div style="clear: both;"></div>
+				<div style="">
+					<div style="width:125px;float:left;"><?php echo $this->kga['lang']['project'] ?>:</div>
+					<div style="float:left;"><?php echo $this->formSelect('projectID[]', $this->preselected_project, array('id' => 'invoice_projectID', 'class'=>'formfield', 'multiple' => 'multiple', 'style'=>'min-width:400px;'), $this->projects); ?></div>
 				</div>
+                                <div style="clear: both;"></div>
 				<div id="invoice_timespan">
 					<?php echo $this->timespan_display ?>
 				</div>
@@ -64,7 +66,9 @@
 				</select>
 
 				<div id="invoice_button">
-					<input type="submit" class="btn_ok" value="<?php echo $this->kga['lang']['ext_invoice']['invoiceButton']?>">
+					<input type="submit" name='disbursementsBTN' class="btn_ok" value="<?php echo $this->kga['lang']['ext_invoice']['disbursementsButton']?>">&nbsp;
+                                        <input type="submit" name='invoiceBTN' class="btn_ok" value="<?php echo $this->kga['lang']['ext_invoice']['invoiceButton']?>"> 
+                                        
 				</div>
 			</div>
 		</form>

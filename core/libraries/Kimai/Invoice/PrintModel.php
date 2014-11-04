@@ -30,6 +30,10 @@ class Kimai_Invoice_PrintModel
      */
     private $entries = array();
     /**
+     * @var array
+     */
+    private $disbursements = array();
+    /**
      * @var int
      */
     private $amount = 0;
@@ -40,11 +44,11 @@ class Kimai_Invoice_PrintModel
     /**
      * @var int
      */
-    private $vat = 0;
+    private $GST = 0;
     /**
      * @var int
      */
-    private $vatRate = 0;
+    private $GSTRate = 0;
     /**
      * @var int
      */
@@ -61,6 +65,10 @@ class Kimai_Invoice_PrintModel
      * @var int
      */
     private $beginDate = 0;
+    /**
+     * @var string
+     */
+    private $shortBeginEndDateRange = '';
     /**
      * @var int
      */
@@ -95,20 +103,25 @@ class Kimai_Invoice_PrintModel
     {
         return array(
             'entries'       => $this->getEntries(),     // array
+            'disbursements'       => $this->getDisbursements(),     // array
             'amount'        => $this->getAmount(),
             'customer'      => $this->getCustomer(),    // array
-            'vat'           => $this->getVat(),
-            'vatRate'       => $this->getVatRate(),
+            'GST'           => $this->getGST(),
+            'GSTRate'       => $this->getGSTRate(),
             'total'         => $this->getTotal(),
             'projects'      => $this->getProjects(),    // array
             'invoiceId'     => $this->getInvoiceId(),
             'beginDate'     => $this->getBeginDate(),
             'endDate'       => $this->getEndDate(),
+            'shortBeginEndDateRange' => $this->getShortBeginEndDateRange(),
             'invoiceDate'   => $this->getInvoiceDate(),
             'dateFormat'    => $this->getDateFormat(),
             'dueDate'       => $this->getDueDate(),
             'currencySign'  => $this->getCurrencySign(),
             'currencyName'  => $this->getCurrencyName()
+                
+                
+                
         );
     }
 
@@ -144,6 +157,15 @@ class Kimai_Invoice_PrintModel
         return $this->currencySign;
     }
 
+    
+    public function getShortBeginEndDateRange() {
+      return $this->shortBeginEndDateRange;
+    }
+    
+    public function setShortBeginEndDateRange($value) {
+      $this->shortBeginEndDateRange = $value;
+    }
+    
     /**
      * @param int $beginDate
      */
@@ -257,6 +279,22 @@ class Kimai_Invoice_PrintModel
     }
 
     /**
+     * @param array $disbursements
+     */
+    public function setDisbursements(array $disbursements)
+    {
+        $this->disbursements = $disbursements;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDisbursements()
+    {
+        return $this->disbursements;
+    }
+
+    /**
      * @param int $amount
      */
     public function setAmount($amount)
@@ -289,35 +327,35 @@ class Kimai_Invoice_PrintModel
     }
 
     /**
-     * @param int $vat
+     * @param int $GST
      */
-    public function setVat($vat)
+    public function setGST($GST)
     {
-        $this->vat = $vat;
+        $this->GST = $GST;
     }
 
     /**
      * @return int
      */
-    public function getVat()
+    public function getGST()
     {
-        return $this->vat;
+        return $this->GST;
     }
 
     /**
-     * @param int $vatRate
+     * @param int $GSTRate
      */
-    public function setVatRate($vatRate)
+    public function setGSTRate($GSTRate)
     {
-        $this->vatRate = $vatRate;
+        $this->GSTRate = $GSTRate;
     }
 
     /**
      * @return int
      */
-    public function getVatRate()
+    public function getGSTRate()
     {
-        return $this->vatRate;
+        return $this->GSTRate;
     }
 
     /**

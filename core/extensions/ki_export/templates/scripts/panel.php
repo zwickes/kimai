@@ -58,10 +58,18 @@
 	<div class="r">
 		<div class="w">
 			<div class="c">
-				<a id="export_extension_export_pdf" href="#" class="output_btn"><?php echo $this->kga['lang']['export_extension']['exportPDF']?></a>
-				<a id="export_extension_export_xls" href="#" class="output_btn"><?php echo $this->kga['lang']['export_extension']['exportXLS']?></a>
-				<a id="export_extension_export_csv" href="#" class="output_btn"><?php echo $this->kga['lang']['export_extension']['exportCSV']?></a>
-				<a id="export_extension_print"      href="#" class="output_btn"><?php echo $this->kga['lang']['export_extension']['print']?></a>
+<!--				<a id="export_extension_export_pdf" href="#" class="output_btn"><?php // echo $this->kga['lang']['export_extension']['exportPDF']?></a>-->
+                          
+                                <?php 
+                                  if ($this->isAdmin) {
+                                    echo '<a id="export_extension_export_xls" href="#" class="output_btn">' . $this->kga["lang"]["export_extension"]["exportXLS"] . '</a>';
+                                  } else {
+                                     $modStyleHack = 'style="top:3px;"';
+                                  }
+                                ?>
+                          
+                          <a id="export_extension_export_csv" href="#" class="output_btn" <?php echo $modStyleHack; ?>><?php echo $this->kga['lang']['export_extension']['exportCSV']?></a>
+<!--				<a id="export_extension_print"      href="#" class="output_btn"><?php // echo $this->kga['lang']['export_extension']['print']?></a>-->
 			</div>
 		</div>
 		<div class="l">&nbsp;</div><div class="r">&nbsp;</div>
